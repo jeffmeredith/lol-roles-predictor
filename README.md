@@ -1,4 +1,4 @@
-# lol-roles-predictor
+# LoL Roles Predictor
 Random Forest Classification of LoL Roles
 
 ## Introduction and Problem Identification
@@ -20,7 +20,7 @@ The baseline model consists of a Decision Tree Classifier with a max depth of 3 
 - K/D Ratio was standardized; (value - mean) / std. dev.
 - Monster Kills; missing values were imputed using mean (only ~8 missing values)
 
-**Accuracy Score: 0.585**; I don't believe this baseline model is very good because its accuracy could easily be improved by engineering and making use of some more features. For example, the Result feature is not utilized well because every match in League of Legends has a player that wins and one that loses for each position, so the Result column alone doesn't say anything about what position someone might be playing. Instead, the result info needs to be combined with some other column to create a better feature.
+**Accuracy Score: 0.59**; I don't believe this baseline model is very good because its accuracy could easily be improved by engineering and making use of some more features. For example, the Result feature is not utilized well because every match in League of Legends has a player that wins and one that loses for each position, so the Result column alone doesn't say anything about what position someone might be playing. Instead, the result info needs to be combined with some other column to create a better feature.
 
 ## Final Model
 
@@ -38,10 +38,10 @@ The baseline model consists of a Decision Tree Classifier with a max depth of 3 
 <iframe src="assets/visionscore.html" width=800 height=600 frameBorder=0></iframe>
 
 **Model and Hyperparameter Selection:**
-The model I chose is the **Random Forest Classifier** because it may decrease the variance of my model by training multiple decision trees with smaller subsets of the training set and having the various trees vote on classifications. I specify two hyperparameters for the Random Forest: **max depth** of each tree and **minimum number of samples to split**. I used a GridSearchCV to test all combinations of 10 options for max depth and 10 options for minimum number of samples to split. The optimal hyperparameters were found to be max depth of **19** and minimum samples to split of **50**. The final improved accuracy was **0.71**, a significant improvement over the baseline accuracy of **0.585**.
+The model I chose is the **Random Forest Classifier** because it may decrease the variance of my model by training multiple decision trees with smaller subsets of the training set and having the various trees vote on classifications. I specify two hyperparameters for the Random Forest: **max depth** of each tree and **minimum number of samples to split**. I used a GridSearchCV to test all combinations of 10 options for max depth and 10 options for minimum number of samples to split. The optimal hyperparameters were found to be max depth of **22** and minimum samples to split of **30**. The final improved accuracy was **0.71**, a significant improvement over the baseline accuracy of **0.59**.
 
 Below is the final model's confusion matrix:
-<iframe src="assets/cmfig.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/cmfig2.html" width=800 height=600 frameBorder=0></iframe>
 
 ## Fairness Analysis
 
@@ -68,4 +68,4 @@ Difference in accuracy score between winners and losers
 We have evidence to reject the null hypothesis because the p-value is lower than our significance level. There is evidence supporting the idea that this final model has a higher accuracy for predicting the positions of players who won the game than for players who lost.
 
 Below is the distribution of test statistics simulated with permutations under the null hypothesis and how it compares to the actual observed test statistic.
-<iframe src="assets/permtest.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/permtest2.html" width=800 height=600 frameBorder=0></iframe>
